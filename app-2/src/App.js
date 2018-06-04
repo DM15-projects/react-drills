@@ -11,7 +11,7 @@ class App extends Component {
 
   render() {
     let myFoods = this.state.foods.map((elem, ind) => (
-      <h2 key={ind}>{elem}</h2>
+      <h2>{elem}</h2>
     ));
     return <div className="App">{myFoods}</div>;
   }
