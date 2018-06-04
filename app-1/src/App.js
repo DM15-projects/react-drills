@@ -1,18 +1,31 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Input from "./component/Input";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userInput: "he"
+    };
+
+    this.changeHandler = this.changeHandler.bind(this);
+  }
+
+  changeHandler(random) {
+    this.setState({ userInput: random.target.value });
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <input onChange={e => this.changeHandler(e)} />
+        <p>{this.state.userInput}</p>
+        {/* <Input
+          userText={this.state.userInput}
+          myFunction={this.changeHandler}
+        /> */}
       </div>
     );
   }
