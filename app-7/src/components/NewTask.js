@@ -1,37 +1,35 @@
 import React, { Component } from "react";
-import List from "./List";
 
 class NewTask extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+
     this.state = {
-      tasks: this.props.tasks,
-      userInput: ""
+      input: ""
     };
+
+    this.handleAdd = this.handleAdd.bind(this);
   }
 
-  changeHandler(val) {
-    this.setState({
-      userInput: val
-    });
+  handleInputChange(value) {
+    this.setState({ input: value });
   }
 
-  handleClick(val) {
-    let tasksCopy = this.state.tasks.slice();
-    tasksCopy.push(val);
-    this.setState({
-      tasks: tasksCopy
-    });
+  handleAdd() {
+    this.props.add(this.state.input);
+    this.setState({ input: "" });
   }
 
   render() {
     return (
       <div>
-        <input onChange={e => this.changeHandler(e.target.value)} />
-        <button onClick={() => this.handleClick(this.state.userInput)}>
-          Click To Add Task
-        </button>
-        <List tasks={this.state.tasks} />
+        <input
+          value={this.state.input}
+          placeholder="Enter new task"
+          onChange={e => this.handleInputChange(e.target.value)}
+        />
+
+        <button onClick={this.handleAdd}>Add</button>
       </div>
     );
   }

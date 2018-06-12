@@ -1,17 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
+import Todo from "./Todo";
 
-class List extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+export default function List(props) {
+  let list = props.tasks.map((element, index) => {
+    return <Todo key={index} task={element} />;
+  });
 
-  render() {
-    let myList = this.props.tasks.map((elem, ind) => {
-      return <h2 key={ind}>{elem}</h2>;
-    });
-    return <div>{myList}</div>;
-  }
+  return <div>{list}</div>;
 }
-
-export default List;

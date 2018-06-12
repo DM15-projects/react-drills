@@ -1,21 +1,30 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import Todo from "./components/Todo";
 import NewTask from "./components/NewTask";
+import List from "./components/List";
 
 class App extends Component {
   constructor() {
     super();
+
     this.state = {
-      tasks: ["mow lawn", "wash dishes", "clean kitchen", "wash car"]
+      list: []
     };
+
+    this.handleAddTask = this.handleAddTask.bind(this);
+  }
+
+  handleAddTask(task) {
+    this.setState({ list: [...this.state.list, task] });
   }
 
   render() {
     return (
       <div className="App">
-        <NewTask tasks={this.state.tasks} />
+        <h1>My to-do list:</h1>
+        <NewTask add={this.handleAddTask} />
+        <List tasks={this.state.list} />
       </div>
     );
   }
